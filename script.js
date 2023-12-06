@@ -91,6 +91,34 @@ function mergeArray(arr, lo, mid, hi){
     }
 }
 
+function mergeArray2(arr, lo, mid, hi){
+    const leftArr = [];
+    const rightArr = [];
+    
+    // insert elment to left array
+    for(let i = lo; i <= mid; i++){
+        leftArr.push(arr[i]);
+    }
+    leftArr.push(Infinity);
+
+    // insert elment to right array
+    for(let i = mid + 1; i <= hi; i++){
+        rightArr.push(arr[i]);
+    }
+    rightArr.push(Infinity);
+
+    let i = j = 0;
+    for(let k = lo; k <= hi; k++){
+        if(leftArr[i] < rightArr[j]){
+            arr[k] = leftArr[i];
+            i++;
+        }else{
+            arr[k] = rightArr[j];
+            j++;
+        }
+    }
+}
+
 function mergeSort(arr, lo, hi){
     if(lo == hi){
         return;
@@ -98,12 +126,24 @@ function mergeSort(arr, lo, hi){
     let mid = Math.floor((lo + hi) / 2);
     mergeSort(arr, lo, mid);
     mergeSort(arr, mid + 1, hi);
-    mergeArray(arr,lo, mid, hi);
+    mergeArray2(arr,lo, mid, hi);
 }
 
 // 5. Heap Sort
 
 // 6. Quick Sort
+function partition(arr, lo, hi){
+    let pivot = lo;
+    return pivot;
+}
+
+function quickSort(arr, lo, hi){
+    if(lo < hi){
+        let pivot = partition(arr, lo, hi);
+        quickSort(arr, lo, pivot - 1);
+        quickSort(arr, pivot + 1, hi);
+    }
+}
 
 // 7. Radix Sorlt
 
@@ -111,5 +151,5 @@ function mergeSort(arr, lo, hi){
 
 
 
-mergeSort(a, 0, a.length - 1);
+quickSort(a, 0, a.length - 1);
 console.log('After sorting', a);
