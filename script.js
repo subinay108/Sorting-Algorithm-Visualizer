@@ -1,4 +1,4 @@
-a = [4,3,5,2,6,1];
+a = [2,3,4,5,1];
 
 console.log('Before sorting', a)
 
@@ -6,6 +6,11 @@ function swap(arr, x, y){
     let temp = arr[x];
     arr[x] = arr[y];
     arr[y] = temp;
+}
+
+// Shuffle the array
+function shuffle(arr){
+    arr.sort(() => Math.random() - 0.5);
 }
 
 // 1. Bubble Sort
@@ -62,36 +67,28 @@ function mergeArray(arr, lo, mid, hi){
 
     let i = lo;
     let j = mid + 1;
-    if(arr[i] > arr[j]){
+
+    while(i <= mid && j <= hi){
+        if(arr[i] < arr[j]){
+            tempArray.push(arr[i]);
+            i++;
+        }else{
+            tempArray.push(arr[j]);
+            j++;
+        }
+    }
+    while(i <= mid){
         tempArray.push(arr[i]);
         i++;
-
-        // if left array ends before right array
-        if(i > mid){
-            for(let k = j; k <= hi; k++){
-                tempArray.push(arr[k]);
-            }
-            return;
-        }
-    }else{
-        tempArray.push(j);
+    }
+    while(j <= hi){
+        tempArray.push(arr[j]);
         j++;
-        
-        // if right array ends before left array
-        if(j > hi){
-            for(let k = i; k <= mid; k++){
-                tempArray.push(arr[k]);
-            }
-            return;
-        }
-
     }
-
     // copy the tempArray to original array
-    for(let i = 0; i < arr.length; i++){
-        arr[i] = tempArray[i];
+    for(let i = 0; i < tempArray.length; i++){
+        arr[lo + i] = tempArray[i];
     }
-
 }
 
 function mergeSort(arr, lo, hi){
@@ -105,9 +102,12 @@ function mergeSort(arr, lo, hi){
 }
 
 // 5. Heap Sort
+
 // 6. Quick Sort
+
 // 7. Radix Sorlt
-// 8. Shel Sort
+
+// 8. Shell Sort
 
 
 
