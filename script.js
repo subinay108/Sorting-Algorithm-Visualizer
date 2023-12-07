@@ -133,15 +133,31 @@ function mergeSort(arr, lo, hi){
 
 // 6. Quick Sort
 function partition(arr, lo, hi){
-    let pivot = lo;
-    return pivot;
+    let pivot = arr[lo];
+    let i = lo;
+    let j = hi;
+    while(true){
+        while(i <= j && pivot >= arr[i]){
+            i++;
+        }
+        while(i <= j && pivot <= arr[j]){
+            j--;
+        }
+        if(i <= j){
+            swap(arr, i, j);
+        }else{
+            break;
+        }   
+    }
+    swap(arr, lo, j);
+    return j;
 }
 
 function quickSort(arr, lo, hi){
     if(lo < hi){
-        let pivot = partition(arr, lo, hi);
-        quickSort(arr, lo, pivot - 1);
-        quickSort(arr, pivot + 1, hi);
+        let p = partition(arr, lo, hi);
+        quickSort(arr, lo, p - 1);
+        quickSort(arr, p + 1, hi);
     }
 }
 
