@@ -161,9 +161,11 @@ function quickSort(arr, lo, hi){
     }
 }
 
-// 7. Radix Sorlt
+// 7. Radix Sort
 
 // 8. Shell Sort
+
+
 
 
 
