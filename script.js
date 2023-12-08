@@ -1,4 +1,4 @@
-a = [2,3,4,5,1];
+a = [2,3,6,4,5,1];
 
 console.log('Before sorting', a)
 
@@ -130,6 +130,47 @@ function mergeSort(arr, lo, hi){
 }
 
 // 5. Heap Sort
+function restoreHeapUp(arr, n){
+    let key = n;
+    while(key != 0){
+        let parent = Math.floor((key - 1) / 2);
+        if(arr[key] > arr[parent]){
+            swap(arr, key, parent);
+            key = parent;
+        }else{
+            break;
+        }
+    }
+}
+function restoreHeapDown(arr, n){
+    let key = 0;
+    while(key <= n){
+        let lc = arr[2 * key + 1];
+        let rc = arr[2 * key + 2];
+        let big = lc > rc ? lc : rc;
+        if(arr[key] < arr[big]){
+            swap(arr, key, big);
+            key = big;
+        }else{
+            break;
+        }
+    }
+}
+
+function heapSort(arr){
+    // build the max heap
+    for(let i = 1; i < arr.length; i++){
+        restoreHeapUp(arr, i);
+    }
+
+    // delete the root node and place it at last of heap
+    for(let i = arr.length - 1; i > 0; i--){
+        swap(arr, 0, i);
+        // restoreHeapDown(arr, i);
+    }
+
+
+}
 
 // 6. Quick Sort
 function partition(arr, lo, hi){
@@ -169,5 +210,5 @@ function quickSort(arr, lo, hi){
 
 
 
-quickSort(a, 0, a.length - 1);
+heapSort(a, 0, a.length - 1);
 console.log('After sorting', a);

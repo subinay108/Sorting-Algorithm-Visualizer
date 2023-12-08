@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -12,6 +13,7 @@ body{
 }
 
 .container{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
