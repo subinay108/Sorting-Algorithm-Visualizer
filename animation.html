@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" integrity="sha512-pI8MMQ9fC050RkbUOr8cJ75T5bYJpT1PAiML/7QZM6Fr74Ef6csO2/Cl92q+Qpxidm7WonXr6f+DbyxNHPGH8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            font-family: 'Roboto Mono', monospace;
+        }
+        .heart-wrapper{
+            width: 16px;
+            height: 20px;
+            /* margin: 0 10px; */
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .heart{
+            display: inline-block;
+            color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .heart-shadow{
+            display: inline-block;
+            color: rgba(17, 16, 16, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .heart-fly{
+            display: inline-block;
+            color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .contribution{
+            width: 100%;
+            margin-top: 100px;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="contribution">
+        <div>Made with</div>
+        <div class="heart-counter"></div> x
+        <div class="heart-wrapper">
+            <div class="heart"><i class="ri-heart-3-fill"></i></div>
+            <div class="heart-shadow"><i class="ri-heart-3-fill"></i></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div> 
+        <div>by Subinay Panda</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/CustomEase.min.js"></script> -->
+    
+    
+
+<script>
+// const output = document.getElementById('output');
+
+// function shuffle(arr){
+//     arr.sort(() => Math.random() - 0.5);
+// }
+// function swap(arr, x, y){
+//     let temp = arr[x];
+//     arr[x] = arr[y];
+//     arr[y] = temp;
+// }
+
+
+// let a = [...Array(10).keys()].map(i => i + 1);
+// let a = [20, 8, 9, 10, 2, 6, 1, 14, 5, 4, 17, 18, 11, 13, 3, 16, 12, 19, 7, 15];
+// shuffle(a);
+
+// console.log('Before sorting', a);
+// shellSort(a);
+// console.log('After sorting', a);
+
+</script>
+<!-- FIREBASE -->
+<script src="./firebase.js" type="module"></script>
+
+<script type="module">
+    import { addHeart, getHeartCount } from './firebase.js';
+    const heart = document.querySelector('.heart-wrapper');
+    let isHeartClicked = false; 
+    let heartCount = 1;
+    const heartCounter = document.querySelector('.heart-counter');
+    window.addEventListener('load', async ()=>{
+        heartCount = await getHeartCount();
+        heartCounter.innerText = heartCount;
+    })
+
+    const heartShadow = document.querySelector('.heart-shadow');
+    const heartBeatAnimation = gsap.to(heart, 1, {scaleX:1.3, scaleY:1.3, ease:Elastic.easeOut, repeat:-1, repeatDelay:0.02});
+
+
+    function deleteElement(el){
+        el.remove();
+    }
+
+    let heartId = 0;
+    let heartArray = [];
+    heart.addEventListener('click', ()=>{
+        heartArray = [];
+        for(let i = 0; i < 10; i++){
+            heart.children[3 + Math.floor(heartId / 10)].innerHTML += `<div id="heart${heartId}" class="heart-fly"><i class="ri-heart-3-fill"></i></div>`;
+            heartArray.push(heartId);
+            heartId = (heartId + 1)%100;
+        }
+        for(let i = 0; i < heartArray.length; i++){
+            let deg = (i % 2 == 0 ? 1 : -1) * Math.random() * 45;
+            let docm = document.getElementById(`heart${heartArray[i]}`);
+            gsap.to(`#heart${heartArray[i]}`, 1, {
+                scale: 2,
+                opacity: 0,
+                rotate: deg,
+                x: deg, 
+                y: -50,
+                onComplete: deleteElement,
+                onCompleteParams: [docm],
+                delay: i * 0.08,
+            });
+        }
+
+        if(!isHeartClicked){
+            heartBeatAnimation.kill();
+            addHeart();
+            heartCount++;
+            heartCounter.innerText = heartCount;
+            isHeartClicked = true;
+        }
+    })
+
+    // const heartAnimation = gsap.to(heartShadow, 0.3, {scale: 3, ease: 'back.out'});
+    // heartAnimation.pause();
+
+    // heartShadow.addEventListener('mouseover', ()=>{
+    //     heartAnimation.play();
+    // })
+    // heartShadow.addEventListener('mouseout', ()=>{
+    //     heartAnimation.reverse();
+    // })
+
+    // const heartFlyAnimation = gsap.to();
+
+</script>
+</body>
+</html>

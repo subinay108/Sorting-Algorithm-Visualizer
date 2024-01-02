@@ -12,24 +12,66 @@
 </head>
 <body>
     <div class="container">
+        <!-- HEADING -->
         <h1 class="heading">Sorting Algorithm Visulaizer</h1>
+
+        <!-- PLAYER -->
         <div class="player">
-            <div class="menu">
-                <ul>
-                    <li>Bubble Sort</li>
-                    <li>Selection Sort</li>
-                    <li>Insertion Sort</li>
-                    <li>Merge Sort</li>
-                    <li>Quick Sort</li>
-                    <li>Heap Sort</li>
-                    <li>Radix Sort</li>
-                    <li>Shell Sort</li>
-                </ul>
-                <div class="next"><i class="ri-arrow-right-s-line"></i></div>
-                <div class="prev"><i class="ri-arrow-left-s-line"></i></div>
+            <!-- MENU -->
+            <div class="menu-container">
+                <div class="prev menu-btn" onclick="previousMenu()"><i class="ri-arrow-left-s-line"></i></div>
+                <div class="menu-items">
+                    <ul>
+                        <li class="bubble active" onclick="openSorting(event, 'bubble')">Bubble Sort</li>
+                        <li class ="selection" onclick="openSorting(event, 'selection')">Selection Sort</li>
+                        <li class ="insertion" onclick="openSorting(event, 'insertion')">Insertion Sort</li>
+                        <li class ="merge" onclick="openSorting(event, 'merge')">Merge Sort</li>
+                        <li class ="quick" onclick="openSorting(event, 'quick')">Quick Sort</li>
+                        <li class ="heap" onclick="openSorting(event, 'heap')">Heap Sort</li>
+                        <li class ="shell" onclick="openSorting(event, 'shell')">Shell Sort</li>
+                    </ul>
+                    <!-- <li>Radix Sort</li> -->
+                </div>
+                <div class="next menu-btn" onclick="nextMenu()"><i class="ri-arrow-right-s-line"></i></div>
             </div>
+
+            <!-- SORTING CONTAINER -->
+            <div class="sorting-container">
+            </div>
+
+            <!-- CONTROL  -->
+            <div class="control">
+                <div class="theme-container">
+                    <div class="theme">Default<i class="ri-arrow-down-s-fill"></i></div>
+                    <div class="shuffle"><i class="ri-shuffle-line"></i></div>
+                </div>
+                <div class="player-controller">
+                    <div class="rewind"><i class="ri-skip-left-fill"></i></div>
+                    <div class="play-pause-btn">
+                        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM10.6219 8.41459C10.5562 8.37078 10.479 8.34741 10.4 8.34741C10.1791 8.34741 10 8.52649 10 8.74741V15.2526C10 15.3316 10.0234 15.4088 10.0672 15.4745C10.1897 15.6583 10.4381 15.708 10.6219 15.5854L15.5008 12.3328C15.5447 12.3035 15.5824 12.2658 15.6117 12.2219C15.7343 12.0381 15.6846 11.7897 15.5008 11.6672L10.6219 8.41459Z" fill="currentColor"></path></svg>
+                        <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM9 9V15H11V9H9ZM13 9V15H15V9H13Z" fill="currentColor"></path></svg>
+                        <svg class="restart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM16.8201 17.0761C18.1628 15.8007 19 13.9981 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C13.0609 19 14.0666 18.764 14.9676 18.3417L13.9928 16.5871C13.3823 16.8527 12.7083 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12H14L16.8201 17.0761Z" fill="currentColor"></path></svg>
+                    </div>
+                    <div class="speedup">
+                        <i class="ri-speed-fill"></i>
+                        <span>1x</span>
+                    </div>
+                </div>
+                <div class="array-size">
+                    Array Size: <span class="array-size-output">10</span>
+                    <input type="range" min="10" max="50" value="10" step="5" class="array-size-slider" id="myRange" oninput="displayArrSize(this)">
+                </div>
+                <div class="duration"></div>
+            </div>    
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>Made with <span class="heart-counter">1</span>x <div class="wrapper"><div class="heart">❤</div><div class="heart-shadow">❤</div></div> by <a href="https://github.com/subinay108/">Subinay Panda</a></p>
         </div>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     
     <script src="script.js"></script>
 </body>
