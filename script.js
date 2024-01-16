@@ -9,11 +9,13 @@ function previousMenu(){
     });
 }
 function nextMenu(){
+    menu.children[menu.children.length - 1].scrollIntoView(); 
     menu.scrollBy({
         top: 0,
         left: 100,
         behavior: 'smooth',
     });
+    // menu.scrollIntoView(true);
 }
 
 
@@ -446,18 +448,6 @@ function shuffleAnimation(){
         gsap.to(`#item${a[i]}`, {x: i * (itemWidth + spaceWidth), duration: 1});
     }
 }
-
-// Heart Animation
-const heartShadow = document.querySelector('.heart-shadow');
-heartAnimation = gsap.to(heartShadow, 0.3, {scale: 3, ease: 'back.out'});
-heartAnimation.pause();
-
-heartShadow.addEventListener('mouseover', ()=>{
-    heartAnimation.play();
-})
-heartShadow.addEventListener('mouseout', ()=>{
-    heartAnimation.reverse();
-})
 
 /*================= DOM MANIPULATION ===================*/
 let activeSortingType = 'bubble';

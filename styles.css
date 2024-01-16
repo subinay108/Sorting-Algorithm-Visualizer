@@ -233,11 +233,18 @@ body{
     cursor: pointer;
 }
 
-.wrapper{
+
+/* Heart Counter Styles */
+
+.heart-wrapper{
+    width: 16px;
     height: 20px;
+    /* margin: 0 10px; */
     display: inline-block;
     position: relative;
     cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 .heart{
     display: inline-block;
@@ -252,4 +259,21 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+}
+.heart-fly{
+    display: inline-block;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.contribution{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 100;
 }
