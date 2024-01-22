@@ -6,11 +6,9 @@
 
 body{
     font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
 }
 
-.heading{
-    text-align: center;
-}
 
 .container{
     width: 100%;
@@ -19,7 +17,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 100px;
+    padding: 0 100px;
+}
+
+.heading{
+    text-align: center;
+    margin-top: 20px;
 }
 
 .player{
@@ -52,22 +55,28 @@ body{
 .menu-items{
     /* overflow-y: hidden; */
     overflow-x: auto;
+    position: relative;
 }
 
 .menu-items ul{
-    display: inline-block;
+    width: 100%;
+    display: flex;
+    gap: 10px;
     list-style: none;
     font-size: 1.5rem;
     user-select: none;
     white-space: nowrap;
 }
 .menu-items ul li{
+    width: 100%;
     display: inline-block;
     text-align: center;
     background-color: black;
     color: white;
     padding: 5px 10px;
     margin: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
     cursor: pointer;
 }
 .menu-items ul li:hover{
@@ -128,18 +137,17 @@ body{
 }
 
 .theme-container{
-    width: 45%;
+    width: 260px;
     display: flex;
     align-items: center;
     gap: 30px;
 }
 .player-controller{
-    width: 20%;
     display: flex;
     align-items: center;
 }
 .array-size{
-    width: 35%;
+    width: 260px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,18 +170,27 @@ body{
 .play-pause-btn svg:hover{
     transform: scale(1.2, 1.2);
 }
+.rewind{
+    width: 30px;
+}
 .rewind i{
     font-size: 30px;
     cursor: pointer;
 }
 .speedup{
+    width: 30px;
     display: flex;
     align-items: center;
     gap: 5px;
+    position: relative;
 }
 .speedup i{
-    font-size: 30px;
+    font-size: 21px;
     cursor: pointer;
+}
+.speedup span{
+    position: absolute;
+    left: 21px;
 }
 .theme{
     padding: 2px 5px;
@@ -184,6 +201,11 @@ body{
 }
 .theme i{
     font-size: 30px;
+}
+.array-size-mobile{
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 .duration{
@@ -276,4 +298,44 @@ body{
     justify-content: center;
     position: relative;
     z-index: 100;
+}
+.contribution a{
+    color: rgb(15, 106, 192);
+}
+.contribution div{
+    display: inline;
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        padding: 0 40px;
+    }
+    .theme-container{
+        width: inherit;
+    }
+    .theme{
+        display: none;
+    }
+    .array-size{
+        display: none;
+    }
+    .array-size-mobile{
+        display: block;
+    }
+    .sorting-container{
+        padding: 0 0px;
+    }
+    .sort-items{
+        left: 20px;
+    }
+    .menu-items ul li{
+        width: 100%;
+    }
+  }
+
+@media (hover: none){
+    .menu-btn:hover{
+        background-color: black;
+        color: white;
+    }
 }

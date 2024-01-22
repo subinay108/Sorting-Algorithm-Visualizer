@@ -2,20 +2,20 @@ const menu = document.querySelector('.menu-items');
 const sortingContainer = document.querySelector('.sorting-container');
 
 function previousMenu(){
+    let scrollWidth = document.querySelector('.menu-items li').clientWidth + 10;
     menu.scrollBy({
         top: 0,
-        left: -100,
+        left: -scrollWidth,
         behavior: 'smooth',
     });
 }
 function nextMenu(){
-    menu.children[menu.children.length - 1].scrollIntoView(); 
+    let scrollWidth = document.querySelector('.menu-items li').clientWidth + 10;
     menu.scrollBy({
         top: 0,
-        left: 100,
+        left: scrollWidth,
         behavior: 'smooth',
     });
-    // menu.scrollIntoView(true);
 }
 
 
@@ -466,20 +466,20 @@ function displayArrSize(el){
     
     
     let b = [...Array(el.value).keys()].map(i => i + 1);
-    console.log(b);
+    // console.log(b);
 
     a = [];
     for(let i = 0; i < el.value; i++){
         a.push(i + 1);
     }
-    console.log(a);
+    // console.log(a);
     updateSortingContainer();
     updateSortingPlayer(activeSortingType);
 }
 
 // Update DOM on resize
-window.addEventListener('resize', ()=>{
-    alpha = (sortingContainer.clientWidth - 100) / 2;
+window.addEventListener('resize', ()=>{ 
+    alpha = (sortingContainer.clientWidth - (sortingContainer.clientWidth < 600 ? 40 : 100)) / 2;
     itemWidth = alpha / a.length;
     spaceWidth = alpha / (a.length - 1);
     // updateSortingContainer();
@@ -511,7 +511,7 @@ function openSorting(event, sortName){
 // Update Sorting Container
 let a = [...Array(10).keys()].map(i => i + 1);
 
-let alpha = (sortingContainer.clientWidth - 100) / 2;
+let alpha = (sortingContainer.clientWidth - (sortingContainer.clientWidth < 600 ? 40 : 100)) / 2;
 let itemWidth = alpha / a.length;
 let spaceWidth = alpha / (a.length - 1);
 function updateSortingContainer(){
@@ -544,7 +544,7 @@ function updateSortingPlayer(sortName){
     updateSortingContainer();
     shuffle(a);
     shuffleAnimation();
-    console.log('Before sorting', a);
+    // console.log('Before sorting', a);
     activeSortingType = sortName;
 
     tl.pause();
@@ -583,7 +583,7 @@ function updateSortingPlayer(sortName){
     endSortingAnimation(a);
     tl.from('.duration', tl.duration(), {width: '0%', ease: Linear.easeNone}, 0);
     
-    console.log('After sorting', a);
+    // console.log('After sorting', a);
 }
 
 updateSortingPlayer('bubble');
