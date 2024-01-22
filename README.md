@@ -6,7 +6,7 @@ This Sorting Algorithm Visualizer is a web application that allows users to inte
 
 ## Live Demo
 
-Explore the Sorting Algorithm Visualizer live at [https://subinay108.github.io/Sorting-Algorithm-Visualizer/].
+Explore the Sorting Algorithm Visualizer live at https://subinay108.github.io/Sorting-Algorithm-Visualizer/.
 
 ## Features
 
