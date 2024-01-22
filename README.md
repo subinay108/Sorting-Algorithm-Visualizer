@@ -32,7 +32,7 @@ Explore the Sorting Algorithm Visualizer live at [https://subinay108.github.io/S
 ![Desktop Screenshot](https://raw.githubusercontent.com/subinay108/Sorting-Algorithm-Visualizer/main/desktop.png)
 
 ### Mobile site
-<img src="https://raw.githubusercontent.com/subinay108/Sorting-Algorithm-Visualizer/main/mobile.jpeg" height="100">
+<img src="https://raw.githubusercontent.com/subinay108/Sorting-Algorithm-Visualizer/main/mobile.jpeg" height="600">
 
 ## Contributing
 
