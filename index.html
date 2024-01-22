@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" integrity="sha512-pI8MMQ9fC050RkbUOr8cJ75T5bYJpT1PAiML/7QZM6Fr74Ef6csO2/Cl92q+Qpxidm7WonXr6f+DbyxNHPGH8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles.css">
     <title>Sorting Algorithm Visualizer | Subinay Panda</title>
+    <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
 </head>
 <body>
     <div class="container">
@@ -62,7 +63,15 @@
                     <input type="range" min="10" max="50" value="10" step="5" class="array-size-slider" id="myRange" oninput="displayArrSize(this)">
                 </div>
                 <div class="array-size-mobile">
-                    <i class="ri-bar-chart-fill"></i>
+                    <label for="array-size-select">
+                        <i class="ri-bar-chart-fill"></i>
+                    </label>
+                    <select class="array-size-select" name="array-size" oninput="displayArrSize(this)">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                    </select>
                 </div>
                 <div class="duration"></div>
             </div>    
